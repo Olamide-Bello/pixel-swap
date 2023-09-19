@@ -7,7 +7,7 @@ import cuid from "cuid";
 import ImageList from './Components/ImageList';
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
-import TouchBackend from "react-dnd-touch-backend";
+import { TouchBackend } from 'react-dnd-touch-backend';
 
 function App() {
   const [images, setImages] = useState([])
