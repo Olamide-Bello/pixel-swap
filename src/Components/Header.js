@@ -12,6 +12,7 @@ const Header = () => {
 
     const handleSignup= () => {
         setSignUpModal(true)
+        setSignInModal(!signInModal)
     }
 
     const handleExit= () => {
