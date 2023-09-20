@@ -13,7 +13,7 @@ import { GlobalContext } from './Components/GlobalContext';
 function App() {
   const {imageList} = useContext(GlobalContext)
   const [images, setImages] = useState([])
-  console.log(imageList)
+  console.log(images)
   const onDrop = useCallback(acceptedFiles => {
     // Loop through accepted files
     acceptedFiles.map(file => {
