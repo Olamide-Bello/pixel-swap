@@ -1,6 +1,7 @@
-import React, { useRef } from 'react'
+import React, { useContext, useRef } from 'react'
 import { useDrag, useDrop } from "react-dnd";
 import update from "immutability-helper";
+import { GlobalContext } from './GlobalContext';
 
 
 // Need to pass which type element can be draggable, its a simple string or Symbol. This is like an Unique ID so that the library know what type of element is dragged or dropped on
@@ -63,7 +64,8 @@ const Image = ({ image, index, moveImage }) => {
 };
 
 
-const ImageList = ({ images, setImages }) => {
+const ImageList = ({ images }) => {
+    const {setImageList} = useContext(GlobalContext)
     // render each image by calling Image component
     const renderImage = (image, index) => {
         return image ? (
@@ -75,6 +77,7 @@ const ImageList = ({ images, setImages }) => {
             />
         ) : null;
     };
+    console.log(images)
 
     const moveImage = (dragIndex, hoverIndex) => {
         // Get the dragged element
@@ -84,7 +87,7 @@ const ImageList = ({ images, setImages }) => {
           - remove the previous reference of dragged element (i.e., [dragIndex, 1])
           - here we are using this update helper method from immutability-helper package
         */
-        setImages(
+        setImageList(
           update(images, {
             $splice: [[dragIndex, 1], [hoverIndex, 0, draggedImage]]
           })
