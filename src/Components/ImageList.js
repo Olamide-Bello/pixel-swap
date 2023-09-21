@@ -76,8 +76,8 @@ const Image = ({ image, index, moveImage }) => {
     }
 
     return (
-        <div className="file-item" ref={ref} style={{ opacity: isDragging ? 0 : 1 }}>
-            <img onDragStart={checkDrag} alt={`img - ${image.id}`} src={image.src} className="file-img" />
+        <div className="file-item" ref={ref} style={{ opacity: isDragging ? 0 : 1, touchAction: !logged && 'none' }}>
+            <img onDragStart={checkDrag} onTouchStart={checkDrag} alt={`img - ${image.id}`} src={image.src} className="file-img" />
             <div className='tag-list'>{getTags(image.tags)}</div>
         </div>
     );
