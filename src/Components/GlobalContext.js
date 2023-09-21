@@ -1,5 +1,6 @@
 import React, { createContext, useEffect, useState } from 'react'
 import { useMemo } from 'react'
+import 'react-toastify/dist/ReactToastify.css';
 
 export const GlobalContext = createContext({
     imageList: [],

@@ -11,6 +11,7 @@ import { TouchBackend } from 'react-dnd-touch-backend';
 import { GlobalContext } from './Components/GlobalContext';
 import Loading from './Components/Loading';
 import CheckDropzone from './Components/CheckDropzone';
+import { ToastContainer, toast } from 'react-toastify';
 
 function App() {
   const {imageList, setImageList, loading, searchResult, matches} = useContext(GlobalContext)
@@ -32,6 +33,7 @@ function App() {
           ...prevState,
           { id: cuid(), src: e.target.result, tags: 'no-tag' }
         ]);
+        toast.success('Image successfully added to list!👍')
       };
       // Read the file as Data URL (since we accept only images)
       reader.readAsDataURL(file);
@@ -57,6 +59,7 @@ function App() {
 
   return (
     <AuthContextProvider>
+      <ToastContainer/>
       <Header />
       {loading && <Loading/>}
       {!matches && <CheckDropzone zone={zone} handleZone={handleZone}/>}

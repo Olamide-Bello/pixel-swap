@@ -5,6 +5,7 @@ import Exit from '../Assets/Exit.png'
 import mail from '../Assets/mail.png'
 import lock from '../Assets/lock.png'
 import { auth } from '../Firebase_setup/Firebase'
+import { toast } from 'react-toastify';
 
 const SignUp = ({handleExit, handleLogin}) => {
     const {
@@ -24,8 +25,11 @@ const SignUp = ({handleExit, handleLogin}) => {
             handleExit()
     
         } catch (err) {
-            console.error(err);
-            alert(err.message);
+            if(err.message === 'Firebase: Error (auth/email-already-in-use).') {
+                toast.warn('You already have an account! Sign in instead')
+            } else {
+                toast.warning(`${err.message}`);
+            }
         }
     
     }

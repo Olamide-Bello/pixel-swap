@@ -132,7 +132,7 @@
 .login {
   width: 50vw;
   background-color: #fff;
-  height: 40vw;
+  height: 37vw;
   border-radius: 0.75vw;
   padding: 2.22vw 1.5vw;
   position: fixed;
@@ -142,6 +142,7 @@
 }
 
 .login.error {
+  top: 5vh !important;
   height: 45vw;
 }
 
@@ -313,7 +314,7 @@
   background-color: #f7aaaa;
   color: #fff;
   border-left: 4px solid #B91C1C;
-  padding: 0.3vw 0;
+  padding: 0.3vw 1vw;
 }
 
 .check-zone {

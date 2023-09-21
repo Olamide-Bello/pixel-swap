@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from 'react'
 import { signOut, onAuthStateChanged } from 'firebase/auth'
 import { auth } from '../Firebase_setup/Firebase'
+import { toast } from 'react-toastify'
 
 
 export const AuthContext = createContext({
@@ -19,12 +20,14 @@ const AuthContextProvider = ({ children }) => {
         signOut(auth)
         setUser({})
         setLogged(false)
+        toast.info('Log Out successful!')
     }
 
     useEffect(() => {
         const manageUserState = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser)
             if(currentUser) {
+                toast.success('Welcome!🤗')
                 setLogged(true)
             }
         })
