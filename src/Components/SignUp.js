@@ -31,7 +31,7 @@ const SignUp = ({handleExit, handleLogin}) => {
     }
     return (
         <div className='modal-container'>
-        <div className='login'>
+        <div className={`login ${(errors.password || errors.email) && 'error'}`}>
             <div className='exit'>
                 <img onClick={handleExit} src={Exit} alt='exit button' />
             </div>

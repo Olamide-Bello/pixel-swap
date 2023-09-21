@@ -9,11 +9,17 @@ import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { TouchBackend } from 'react-dnd-touch-backend';
 import { GlobalContext } from './Components/GlobalContext';
+import Loading from './Components/Loading';
+import CheckDropzone from './Components/CheckDropzone';
 
 function App() {
-  const {imageList} = useContext(GlobalContext)
-  const [images, setImages] = useState([])
-  console.log(images)
+  const {imageList, setImageList, loading, searchResult, matches} = useContext(GlobalContext)
+  const [zone, setZone] = useState(false)
+
+  const handleZone= () => {
+    setZone(!zone)
+  }
+
   const onDrop = useCallback(acceptedFiles => {
     // Loop through accepted files
     acceptedFiles.map(file => {
@@ -22,9 +28,9 @@ function App() {
       // onload callback gets called after the reader reads the file data
       reader.onload = function (e) {
         // add the image into the state. Since FileReader reading process is asynchronous, its better to get the latest snapshot state (i.e., prevState) and update it. 
-        setImages(prevState => [
+        setImageList(prevState => [
           ...prevState,
-          { id: cuid(), src: e.target.result }
+          { id: cuid(), src: e.target.result, tags: 'no-tag' }
         ]);
       };
       // Read the file as Data URL (since we accept only images)
@@ -32,7 +38,7 @@ function App() {
       return file;
     });
     // console.log(acceptedFiles);
-  }, []);
+  }, [setImageList]);
 
   // simple way to check whether the device support touch (it doesn't check all fallback, it supports only modern browsers)
   const isTouchDevice = () => {
@@ -46,12 +52,17 @@ function App() {
   // Assigning backend based on touch support on the device
   const backendForDND = isTouchDevice() ? TouchBackend : HTML5Backend;
 
+  //Display based on search
+  const list = searchResult && searchResult.length>0? searchResult : imageList
+
   return (
     <AuthContextProvider>
       <Header />
-      <Dropzone onDrop={onDrop} accept={"image/*"} />
+      {loading && <Loading/>}
+      {!matches && <CheckDropzone zone={zone} handleZone={handleZone}/>}
+      {zone && <Dropzone onDrop={onDrop} accept={"image/*"} />}
       <DndProvider backend={backendForDND}>
-        <ImageList images={imageList} />
+        <ImageList imageList={list} />
       </DndProvider>
     </AuthContextProvider>
   );

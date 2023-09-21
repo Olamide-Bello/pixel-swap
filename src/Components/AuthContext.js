@@ -27,7 +27,6 @@ const AuthContextProvider = ({ children }) => {
             if(currentUser) {
                 setLogged(true)
             }
-            console.log('user', currentUser)
         })
         return () => {
             manageUserState();

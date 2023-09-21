@@ -13,7 +13,7 @@ const Dropzone = ({ onDrop, accept }) => {
     }
     return (
         <div className={getClassName("dropzone", isDragActive)} {...getRootProps()}>
-
+            <p>Drop your local images here!</p>
         </div>
     )
 }
