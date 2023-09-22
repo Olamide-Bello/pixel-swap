@@ -1,5 +1,5 @@
 .header-container {
-  background: url('https://pixabay.com/get/g198c0e0a758b4c0f74e788175acbb26d7fe8afee7db6d177ac77119a15c080258377b5c587c75f36f1388a9bad37911992edcc315a7297be92864ea2c476e9fe_1280.jpg') no-repeat center center/cover;
+  background: url('./Assets/ball.jpg') no-repeat center center/cover;
   height: 70vh;
   width: 100%;
   position: relative;
