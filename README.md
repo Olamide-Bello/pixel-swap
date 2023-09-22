@@ -2,6 +2,13 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Project Name - PixelSpot
+### Project Descrition
+This is an image drag and drop website where authenticated users can drag and drop images and can also upload from their local storage 
+
+### Live Website
+The live website is available [https://pixel-swap.pages.dev](https://pixel-swap.pages.dev/)
+
 ## Available Scripts
 
 In the project directory, you can run:
