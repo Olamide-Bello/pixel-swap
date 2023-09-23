@@ -47,8 +47,9 @@ const GlobalState = ({ children }) => {
 
     useEffect(()=> {
         const getTagged = ()=> {
+            const value = searchValue.trim().toLowerCase()
             const copy = [...imageList]
-            const tagged = copy.filter(image => image.tags.includes(searchValue))
+            const tagged = copy.filter(image => image.tags.includes(value))
             if(tagged && tagged.length > 0) {
                 setSearchResult(()=>tagged)
             }
